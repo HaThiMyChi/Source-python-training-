@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="../static/ext/resources/css/ext-all.css" />
+	<link rel="stylesheet" type="text/css" href="../static/jquery-ui/theme/jquery-ui.css" />
+	<script type="text/javascript" src="../static/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="../static/jquery-ui/jquery-ui-1.10.3.custom.js"></script>
+	<script type="text/javascript" src="../static/ext/adapter/jquery/ext-jquery-adapter.js"></script>
+	<script type="text/javascript" src="../static/ext/adapter/ext/ext-base.js"></script>
+	<script type="text/javascript" src="../static/ext/ext-all.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+  <p id="log"></p>
+  <div class="container-pr">
+
+          <div class="title">Quản lý cầu thủ</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div id="table"></div>
+            <br/><br/>
+             <div id="table1"></div>
+              <br/><br/>
+             <div id="hachi"></div>
+        </div>
+        <div class="col-sm-1">
+        </div>
+      </div>
+    </div>
+     <form action="/add" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm Cầu Thủ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label class="col-form-label">Tên:</label>
+                    <input type="text" class="form-control" id="name" name="name" required minlength="2" maxlength="20">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Tuổi:</label>
+                     <input type="number" class="form-control" id="age" name="age" required min="1" max="100">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Quốc tịch:</label>
+                     <input type="text" class="form-control" id="national" name="national" required minlength="2" maxlength="20">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Vị trí:</label>
+                     <input type="text" class="form-control" id="position" name="position" required minlength="2" maxlength="20">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Lương:</label>
+                     <input type="number" class="form-control" id="salary" name="salary" required min="1" max="100">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary" id="btn-add" >Thêm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+
+       <form action="" method="">
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Edit Cầu Thủ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" id="Id1" name="Id"  required minlength="2" maxlength="20">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label">Tên:</label>
+                    <input type="text" class="form-control" id="name1" name="name"  required minlength="2" maxlength="20">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Tuổi:</label>
+                     <input type="number" class="form-control" id="age1" name="age" required min="1" max="100">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Quốc tịch:</label>
+                     <input type="text" class="form-control" id="national1" name="national" required minlength="2" maxlength="20">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Vị trí:</label>
+                     <input type="text" class="form-control" id="position1" name="position" required minlength="2" maxlength="20">
+                  </div>
+                  <div class="form-group">
+                     <label class="col-form-label">Lương:</label>
+                     <input type="number" class="form-control" id="salary1" name="salary" required min="1" max="1000">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button  class="btn btn-primary" id="btnEdit" >Sửa</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+  </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous">
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/static/js/script.js"></script>
+  <!--<script type="text/javascript">-->
+    <!--Ext.onReady(function(){-->
+        <!--Ext.get('button').on('click', function(){-->
+<!--//            Ext.MessageBox.alert('Status', 'Changes saved successfully.');-->
+<!--//           Ext.QuickTips.init();-->
+<!--//            Ext.form.Field.prototype.msgTarget = 'side';-->
+<!--//            var bd = Ext.getBody();-->
+<!--//            bd.createChild({tag: 'h2', html: 'Form 1 - Very Simple'})-->
+            <!--var simple = new Ext.FormPanel({-->
+                <!--labelWidth: 75,  // label settings here cascade unless overridden-->
+                    <!--//                url: 'save-form.php',-->
+                <!--frame: true,-->
+                <!--title: 'Thêm cầu thủ',-->
+                <!--bodyStyle: 'padding: 5px 5px 0',-->
+                <!--width: 400,-->
+                <!--defaults: {width: 230},-->
+                <!--defaultType : 'textfield',-->
+
+                <!--items: [{-->
+                <!--fieldLabel: 'Tên',-->
+                <!--name: 'name',-->
+                <!--id: 'name',-->
+                <!--allowBlank: false-->
+                <!--}, {-->
+                <!--fieldLabel: 'Tuổi',-->
+                <!--name: 'age',-->
+                <!--id:'age'-->
+                <!--},{-->
+                <!--fieldLabel: 'Quốc tịch',-->
+                <!--name: 'national',-->
+                 <!--id:'national'-->
+                <!--},{-->
+                <!--fieldLabel: 'Vị trí',-->
+                <!--name: 'position',-->
+                <!--id:'position'-->
+                <!--},{-->
+                <!--fieldLabel: 'Lương',-->
+                <!--name: 'salary',-->
+                <!--id:'salary'-->
+                <!--}],-->
+                <!--buttons: [{-->
+                <!--text: 'Đóng',-->
+                <!--handler: function(){-->
+                    <!--win.hide();-->
+                    <!--}-->
+                <!--},{-->
+                <!--text: 'Thêm',-->
+                <!--//                    id: 'btn-add',-->
+                <!--handler:function() {-->
+                    <!--var url = '/add';-->
+                    <!--var name = $('#name').val();-->
+                    <!--var age = $('#age').val();-->
+                    <!--console.log(age);-->
+                    <!--var national = $('#national').val();-->
+                    <!--var position = parseInt($('#position').val());-->
+                    <!--var salary = $('#salary').val();-->
+                    <!--$.ajax({-->
+                    <!--url: url,-->
+                    <!--method: "POST",-->
+                    <!--data: {name: name, age: age, national: national, position: position, salary: salary}-->
+<!--//                    success: function(data_json) {-->
+<!--////                        if(data) {-->
+<!--//                            win.close();-->
+<!--////                        }-->
+<!--//                        }-->
+                    <!--});-->
+                    <!--loadPage(this);-->
+                    <!--win.close();-->
+                  <!--}-->
+                <!--}]-->
+            <!--});-->
+            <!--var win = new Ext.Window({-->
+                <!--items: [simple]-->
+            <!--});-->
+            <!--win.show();-->
+        <!--});-->
+
+
+
+         <!--function loadPage(obj) {-->
+           <!--var url = '/getlist';-->
+            <!--$.ajax({-->
+            <!--url: url,-->
+            <!--method: "GET",-->
+            <!--success: function(data) {-->
+            <!--var res = JSON.parse(data);-->
+            <!--var html = '';-->
+            <!--html += loadTable(res.players);-->
+            <!--$(obj ).find('table tbody').html(html);-->
+                <!--}-->
+            <!--});-->
+         <!--};-->
+
+        <!--function loadTable(players){-->
+            <!--var html='search no data, please  search again!';-->
+                <!--for (var i = 0; i < players.length; i++) {-->
+                    <!--var player = players[i];-->
+                    <!--html += '<tr>';-->
+                    <!--html += '<td>' + player.id + '</td>';-->
+                    <!--html += '<td>' + player.name + '</td>';-->
+                    <!--html += '<td>' + player.age + '</td>';-->
+                    <!--html += '<td>' + player.national + '</td>';-->
+                    <!--html += '<td>' + player.position + '</td>';-->
+                    <!--html += '<td>' + player.salary + '</td>';-->
+<!--//                    html += '<td><a href="/edit?id='+ player.id +'">Edit</a></td>';-->
+                    <!--html += '<td><button type="button" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#exampleModal1">Edit</button></td>';-->
+<!--//                    html += '<td><a href="/remove?id='+ player.id +'">Delete</a></td>';-->
+                    <!--html += '<td><button  type="button" class="btn btn-primary btn-delete" data-toggle="modal" data-target="#exampleModal2">Delete</button></td>';-->
+                    <!--html += '</tr>'-->
+                 <!--}-->
+
+                <!--return html;-->
+        <!--};-->
+
+<!--//        Ext.QuickTips.init();-->
+<!--//-->
+<!--//        Ext.state.Manager.setProvider(new Ext.state.CookieProvider());-->
+<!--//-->
+<!--//        // sample static data for the state-->
+<!--//        var myData = [-->
+<!--//                '3m Co',-->
+<!--//                'Alcoa Inc',-->
+<!--//                'Altria Group Inc',-->
+<!--//                'American Express Company',-->
+<!--//                'American International Group, Inc.',-->
+<!--//                'AT&T Inc',-->
+<!--//                'Boeing Co.',-->
+<!--//                'Citigroup, Inc.',-->
+<!--//                'E.I. du Pont de Nemours and Company',-->
+<!--//                'Exxon Mobil Corp',-->
+<!--//                'General Electric Company',-->
+<!--//                'General Motors Corporation',-->
+<!--//                'Hewlett-Packard Co.',-->
+<!--//                'Honeywell Intl Inc',-->
+<!--//                'Intel Corporation',-->
+<!--//                'International Business Machines',-->
+<!--//                'Merck & Co., Inc',-->
+<!--//                'Microsoft Corporation',-->
+<!--//                'Verizon Communications'-->
+<!--//        ];-->
+<!--//-->
+<!--//        function change(val){-->
+<!--//            if (val > 0) {-->
+<!--//                return '<span style="color:green;">' +  val + '</span>';-->
+<!--//            } else if(val <0){-->
+<!--//                return '<span style="color:red;">' + val + '</span>';-->
+<!--//            }-->
+<!--//            return val;-->
+<!--//        }-->
+<!--//-->
+<!--//        function pctChange(val){-->
+<!--//            if (val > 0) {-->
+<!--//                return '<span style="color:green;">' + val + + '%</span>';-->
+<!--//            } else if (val < 0){-->
+<!--//                return '<span style="clor:red;">' + val + '%</span>';-->
+<!--//            }-->
+<!--//            return val;-->
+<!--//        }-->
+<!--//-->
+<!--//        // create the data store-->
+<!--//        var store = new Ext.data.ArrayStore({-->
+<!--//            fields :[-->
+<!--//                {name: 'company'},-->
+<!--//                {name: 'price', type: 'float'},-->
+<!--//                {name: 'change', type: 'float'},-->
+<!--//                {name: 'pctChange', type: 'float'},-->
+<!--//                {name: 'lastChange', type:'date', dateFormat:'n/j h:ia'}-->
+<!--//            ]-->
+<!--//        });-->
+<!--//-->
+<!--//        // manually load local data-->
+<!--//        store.loadData(myData);-->
+<!--//-->
+<!--//        //create the Gird-->
+<!--//        var grid = new Ext.grid.GridPanel({-->
+<!--//            store: store,-->
+<!--//            columns:[-->
+<!--//                {-->
+<!--//                    id: 'company',-->
+<!--//                    header: 'Company',-->
+<!--//                    width: 160,-->
+<!--//                    sortable: true,-->
+<!--//                    dataIndex: 'company'-->
+<!--//                },-->
+<!--//                {-->
+<!--//                    header: 'Price',-->
+<!--//                    width: 75,-->
+<!--//                    sortable: true,-->
+<!--//                    renderer: 'usMoney',-->
+<!--//                    dataIndex: 'price'-->
+<!--//                },-->
+<!--//                {-->
+<!--//                    header: '% Change',-->
+<!--//                    width: 75,-->
+<!--//                    sortable: true,-->
+<!--//                    renderer: pctChange,-->
+<!--//                    dataIndex: 'pctChange'-->
+<!--//                },{-->
+<!--//                    header: 'Last Updated',-->
+<!--//                    width: 85,-->
+<!--//                    sortable : true,-->
+<!--//                    renderer : Ext.util.Format.dateRenderer('m/d/Y'),-->
+<!--//                    dataIndex: 'lastChange'-->
+<!--//                },{-->
+<!--//                    xtype: 'actioncolumn',-->
+<!--//                    width: 50,-->
+<!--//                    items: [{-->
+<!--//                        icon: '../templates/shared/icons/fam/delete.png',-->
+<!--//                        tooltip: 'Sell stock',-->
+<!--//                        handler: function(grid, rowIndex, colIndex){-->
+<!--//                            var rec = store.getAt(rowIndex);-->
+<!--//                            alert("Sell" + rec.get('company'));-->
+<!--//                        }-->
+<!--//                    }, {-->
+<!--//                        getClass: function(v, meta, rec) {-->
+<!--//                            if (rec.get('change') < 0) {-->
+<!--//                                this.items[1].tooltip = 'Do not buy!';-->
+<!--//                                return 'alert-col';-->
+<!--//                            } else {-->
+<!--//                               this.items[1].tooltip = 'Buy stock';-->
+<!--//                                return 'buy-col';-->
+<!--//                            }-->
+<!--//                        },-->
+<!--//                        handler: function (grid, rowIndex, colIndex) {-->
+<!--//                            var rec = store.getAt(rowIndex);-->
+<!--//                            alert ("Buy" + rec.get('company'));-->
+<!--//                        }-->
+<!--//                    }]-->
+<!--//                }-->
+<!--//            ],-->
+<!--//            stripeRows: true,-->
+<!--//            autoExpandColumn: 'company',-->
+<!--//            height: 350,-->
+<!--//            width: 600,-->
+<!--//            title: 'Array Grid',-->
+<!--//            stateful: true,-->
+<!--//            stateId: 'grid'-->
+<!--//        });-->
+<!--//        grid.render('grid-example');-->
+    <!--});-->
+<!--</script>-->
+    <!--<div id="grid-example"></div>-->
+  </body>
+</html>
